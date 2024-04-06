@@ -1,13 +1,13 @@
-package com.spring.blogwebservice;
+package com.spring.webserviceblog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BlogWebserviceApplication {
+public class WebserviceBlogApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BlogWebserviceApplication.class, args);
+		SpringApplication.run(WebserviceBlogApplication.class, args);
 	}
 
 }
