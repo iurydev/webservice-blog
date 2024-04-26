@@ -2,13 +2,17 @@ package com.spring.webserviceblog.controller;
 
 import com.spring.webserviceblog.model.PostModel;
 import com.spring.webserviceblog.service.BlogSpringService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -36,4 +40,16 @@ public class BlogSpringController {
     public String getPostForm() {
         return "postForm";
     }
+
+    @RequestMapping(value = "newpost", method = RequestMethod.POST)
+    public String savePost(@Valid PostModel post, BindingResult result, RedirectAttributes attributes) {
+        if (result.hasErrors()) {
+            attributes.addFlashAttribute("mensagem", "Verifique se os campos obrigatórios foram preenchidos!");
+            return "redirect:/newpost";
+        }
+        post.setData(LocalDate.now());
+        blogSpringService.save(post);
+        return "redirect:/posts";
+    }
+
 }
