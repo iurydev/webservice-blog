@@ -8,4 +8,6 @@ public interface BlogSpringService {
     List<PostModel> findAll();
     PostModel findById(long id);
     PostModel save(PostModel post);
+
+    void deletePost(PostModel post);
 }

@@ -55,4 +55,14 @@ public class BlogSpringController {
         return ResponseEntity.ok(newPost);
     }
 
+    @DeleteMapping("/post/{id}")
+    public ResponseEntity<Void> deletePostById(@PathVariable("id") long id) {
+        PostModel post = blogSpringService.findById(id);
+        if (post == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        blogSpringService.deletePost(post);
+        return ResponseEntity.noContent().build();
+    }
+
 }

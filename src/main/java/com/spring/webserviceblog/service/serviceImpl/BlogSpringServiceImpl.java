@@ -28,4 +28,9 @@ public class BlogSpringServiceImpl implements BlogSpringService {
     public PostModel save(PostModel post) {
         return blogSpringRepository.save(post);
     }
+
+    @Override
+    public void deletePost(PostModel post) {
+        blogSpringRepository.delete(post);
+    }
 }
