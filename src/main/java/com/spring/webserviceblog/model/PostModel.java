@@ -67,5 +67,14 @@ public class PostModel {
     public void setTexto(String texto) {
         this.texto = texto;
     }
+
+    public void partialUpdate(PostUpdateDTO update) {
+        if (update.getTitulo() != null) {
+            this.setTitulo(update.getTitulo());
+        }
+        if (update.getTexto() != null) {
+            this.setTexto(update.getTexto());
+        }
+    }
 }
 
